@@ -1,10 +1,9 @@
 name: Run Tests and Code Checks
 
-# События, которые запускают workflow
 on:
   push:
     branches:
-      - master
+      - main
       - release
   pull_request:
     branches:
@@ -15,32 +14,28 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env: 
-      FULL_NAME: "Мисенко Андрей Александрович"
-      GROUP_NUMBER: "M3115"
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # 1. Выводим ФИО, номер группы и ник GitHub
-    - name: user information
-      run: |
-        echo "Full Name: ${{ env.FULL_NAME }}"
-        echo "Group: M3115: ${{ env.GROUP_NUMBER }}"
-        echo "GitHub Username: ${{ github.actor }}"
+    # Показать текущую директорию
+    - name: Show current directory
+      run: pwd
 
     - name: Set up Python 3.13
       uses: actions/setup-python@v4
       with:
         python-version: 3.13
 
-    # 4. Запускаем юнит-тесты
-    - name: Run unit tests
-      run: |
-        python -m unittest discover -s geometric_lib/geometric_lib/tests
-
-    # 5. Проверяем стиль кода
-    - name: Lint code with flake8
+    - name: Install dependencies
       run: |
         pip install flake8
+
+    - name: Run unit tests
+      run: |
+        python -m unittest discover -s geometric_lib/tests
+
+    - name: Lint code with flake8
+      run: |
+        flake8 . --max-line-length=79
