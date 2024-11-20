@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      users: actions/checkout@v3
+      uses: actions/checkout@v3
 
     # 1. Выводим ФИО, номер группы и ник GitHub
     - name: user information
