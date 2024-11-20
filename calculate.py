@@ -1,7 +1,6 @@
 import circle
 import square
 
-# Constants
 FIGS = ["circle", "square", "triangle"]
 FUNCS = ["perimeter", "area"]
 SIZES = {
@@ -18,15 +17,13 @@ def calc(fig, func, size):
     assert fig in FIGS, f"Unsupported figure: {fig}"
     assert func in FUNCS, f"Unsupported function: {func}"
 
-    # Validate size length
     key = f"{fig}-{func}"
     expected_args = SIZES.get(key)
     assert expected_args is not None, f"Unsupported operation: {key}"
     assert (
-        len(size) == expected_args
+            len(size) == expected_args
     ), f"Expected {expected_args} arguments, got {len(size)}"
 
-    # Validate size positivity
     assert all(s >= 0 for s in size), "All sizes must be non-negative"
 
     # Validate triangle inequality
@@ -53,7 +50,6 @@ def calc(fig, func, size):
         elif func == "perimeter":
             return sum(size)
 
-    # If we reach here, something is wrong
     raise AssertionError(f"Unhandled case for {fig} with {func}")
 
 
