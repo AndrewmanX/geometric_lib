@@ -11,6 +11,7 @@ on:
       - master
       - release
       - develop
+      - feature-tests
 
 jobs:
   build:
