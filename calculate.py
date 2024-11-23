@@ -24,33 +24,10 @@ def calc(fig, func, size):
             len(size) == expected_args
     ), f"Expected {expected_args} arguments, got {len(size)}"
 
-    assert all(s >= 0 for s in size), "All sizes must be non-negative"
-
-    # Validate triangle inequality
-    if fig == "triangle":
-        a, b, c = size
-        assert a + b > c and a + c > b and b + c > a, "Invalid triangle sides"
-
     # Perform calculation
-    if fig == "circle":
-        if func == "area":
-            return circle.area(*size)
-        elif func == "perimeter":
-            return circle.perimeter(*size)
-    elif fig == "square":
-        if func == "area":
-            return square.area(*size)
-        elif func == "perimeter":
-            return square.perimeter(*size)
-    elif fig == "triangle":
-        if func == "area":
-            a, b, c = size
-            s = (a + b + c) / 2  # Полупериметр
-            return (s * (s - a) * (s - b) * (s - c)) ** 0.5
-        elif func == "perimeter":
-            return sum(size)
-
-    raise AssertionError(f"Unhandled case for {fig} with {func}")
+    result = eval(f'{fig}.{func}(*{size})')
+    print(f'{func} of {fig} is {result}')
+    return result
 
 
 if __name__ == "__main__":

@@ -1,6 +1,8 @@
 def area(a):
-    return a * a
+    if a > 0:
+        return a * a
 
 
 def perimeter(a):
-    return 4 * a
+    if a > 0:
+        return 4 * a
