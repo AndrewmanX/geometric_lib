@@ -1,6 +1,7 @@
 import math
-
-
+'''
+вычестялет площадь круга
+'''
 def area(r):
     return math.pi * r * r
 
